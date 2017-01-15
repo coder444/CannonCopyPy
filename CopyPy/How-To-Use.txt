@@ -1,0 +1,1 @@
+Run MinecraftRemoteScript.py on your Raspberry Pi, making sure that a Minecraft Pi instance is running, and enter "localhost" or a valid IP and type "list" for commands
