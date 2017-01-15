@@ -16,10 +16,17 @@ def getMc():
         mc.postToChat("CityBuilder HOST Connection %s" % ipp)
     except:
         print("could not create world instance. Try again.")
+    ### Edit coder444
+    ### Make MRS return MC as it getMc() is now called by CopyBuild (LN25)
+    return mc
 def returnMc():
     return mc
 
-getMc()
+### Edit coder444
+### Following 2 lines: Ask CopyBuild to ask MinecraftRemoteScript to ask for an
+### IP and return MC
+CopyBuild.askForMc()
+#getMc()
 
 first = True
 

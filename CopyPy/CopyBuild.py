@@ -7,6 +7,8 @@ import random
 from mcpi import minecraft
 import cPickle as pickle
 
+
+
 class BlockCollection:
     def __init__(self, blockData, xlength, ylength, zlength, numB):
         """The BlockData is the x, y, z, blockID, and the blockData in that order. 
@@ -17,6 +19,12 @@ class BlockCollection:
         self.zLen = zlength
         self.numBlocks = numB
         """the maxVals are the highest x, y, and z values out of all of the ."""
+### Edit coder444
+### Create def for askForMc, called by MinecraftRemoteScript
+def askForMc():
+    global mc
+    import MinecraftRemoteScript
+    mc = MinecraftRemoteScript.getMc()
 
 """Default current pad"""
 
@@ -120,8 +128,7 @@ currentPad = BlockCollection(
 def copy():
     global mc
     global blockEv
-    from MinecraftRemoteScript import returnMc
-    mc = returnMc()
+    
     blockEv = []
     mc.postToChat("Make a wool rectangle under your house, then")
     mc.postToChat("right click your wool platform under the front of your house. ")
@@ -251,7 +258,7 @@ def load():
         
 def build():
     global mc
-    from MinecraftRemoteScript import mc
+    #from MinecraftRemoteScript import mc
     mc.postToChat("Building structure.")
    
     placeToBuild = (mc.player.getPos())
