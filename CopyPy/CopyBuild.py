@@ -37,7 +37,7 @@ def placeBlockCollection(BC , x, y, z):
 
 """Make a platform for something to be on. pass starting corner of rectangle to place, end place, block to use, and block data."""
 def buildPlatform(x, y, z, ex, ey, ez, BID, BD):
-    print ("building platform")
+    print ("Building Platform....")
     
     for platX in range (int(x),int(ex)): 
         for platZ in range(int(z), int(ez)):
@@ -194,33 +194,34 @@ def copy():
                     if(xCounter == 0):
                         direction = 2
                     
-                    st = "the direction selected is "
-                    print(st)
-                    print(direction)
+                    #st = "the direction selected is "
+                    #print(st)
+                    #print(direction)
+                    print("The direction selected is %s" % direction)
                     makeBlockCollectionFromPad(x, y, z, lenX, lenY, lenZ, )
                     Turn(currentPad, direction, 1)
                     blockEv = [1]
-                    mc.postToChat("Structure copied.")
+                    mc.postToChat("Structure Copied.")
                     logic = raw_input("Overwrite this structure to Save file? (y/n)")
                     if(logic == "y"):
                         save();
 ###open("Save.p", "wb")
 def save():
     global masterList
-    filee = raw_input("name of save:")
-    folder = raw_input("folder for save:")
+    filee = raw_input("Name of Save: ")
+    folder = raw_input("Folder For Save: ")
     path = "Saves/" + folder
     if not os.path.isdir(path):
         os.makedirs(path)
     filee = path + "/" + filee
     filee = filee + ".p"
-    print("Saving to file...")
+    print("Saving to File...")
     try:
         f = open(filee, 'wb')
         pickle.dump(currentPad, f)
         f.close()
     except:
-        print("Could not save file. try again.")
+        print("Failed to save file. Try again.")
 
     try:
         p = open("Saves/" + folder + "/MasterList.p", 'rb')
@@ -245,13 +246,13 @@ def save():
     ### print("could not write to master list.")
 def load():
     global currentPad
-    filee = raw_input("file to load: ") + ".p"
-    folder = raw_input("foler of save: ")
+    filee = raw_input("File to Load: ") + ".p"
+    folder = raw_input("Foler of Save: ")
     filee =os.path.join(os.path.abspath("Saves") , folder ,  filee)
     g =open(filee, "rb")
     currentPad = pickle.load(g)
     g.close()
-    logic = raw_input("start building with loaded file? (y/n)")
+    logic = raw_input("Start building with loaded file? (y/n)")
     if(logic == "y"):
         build()
     
@@ -259,7 +260,7 @@ def load():
 def build():
     global mc
     #from MinecraftRemoteScript import mc
-    mc.postToChat("Building structure.")
+    mc.postToChat("Building Structure.")
    
     placeToBuild = (mc.player.getPos())
     structure = currentPad
@@ -310,7 +311,7 @@ def FlipOpp(BC):
         block[2] = (original[2] * -1) + BC.zLen - 1
 
 def FlipAdj(BC):
-    print("flipping adjacent")
+    print("Flipping Adjacent")
     for block in BC.blockData:
         x = block[0]
         z = block[2]
@@ -342,7 +343,7 @@ def BuildCityTwo():
     y =placeToBuild.y - 2
     z =placeToBuild.z
     
-    folder = raw_input("folder to make city from:")
+    folder = raw_input("Folder to make city from: ")
     f = open("Saves/" + folder + "/" + "MasterList.p", 'rb')
     masterList = pickle.load(f)
 
@@ -358,13 +359,13 @@ def BuildCity():
     x =placeToBuild.x
     y =placeToBuild.y - 2
     z =placeToBuild.z
-    sizeX = input("length of city:")
+    sizeX = input("Length of City: ")
     sizeY = 20
-    sizeZ = input("width of city:")
+    sizeZ = input("Width of City: ")
     ###mc.setBlocks(x, y, z, x + sizeX, y, z + sizeZ, 35, 15)
     ###mc.setBlocks(x, y + 1, z - 8, x + sizeX, y + sizeY, z + sizeZ, 0, 0)
 
-    folder = raw_input("folder to make city from:")
+    folder = raw_input("Folder to make city from: ")
     f = open("Saves/" + folder + "/" + "MasterList.p", 'rb')
     masterList = pickle.load(f)
     
@@ -389,10 +390,3 @@ def BuildCity():
                     bz =bz - zCounter - laneSpace
             
                 ### buildStructure(structure, bx, y + 2, bz - structure.zLen, 35, bz)
-
-
-
-
-
-
-        

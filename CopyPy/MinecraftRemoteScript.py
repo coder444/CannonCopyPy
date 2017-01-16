@@ -2,6 +2,9 @@ from mcpi import minecraft
 import warnings
 import Circle
 import CopyBuild
+
+import sys
+
 warnings.filterwarnings("ignore")
 
 running = True
@@ -9,20 +12,19 @@ running = True
 def getMc():
     global mc
     try:
-        ip = raw_input("what is the ip?")
+        ip = raw_input("Please Enter IP Address Here: ")
         ipp = ip
         port = 4711
         mc = minecraft.Minecraft.create(ipp, port)
         mc.postToChat("CityBuilder HOST Connection %s" % ipp)
     except:
-        print("could not create world instance. Try again.")
-    ### Edit coder444
+        print("Failed to connected to %s. Is %s running Minecraft Pi Edition?" % (ipp, ipp))
+        sys.exit()
     ### Make MRS return MC as it getMc() is now called by CopyBuild (LN25)
     return mc
 def returnMc():
     return mc
 
-### Edit coder444
 ### Following 2 lines: Ask CopyBuild to ask MinecraftRemoteScript to ask for an
 ### IP and return MC
 CopyBuild.askForMc()
@@ -62,7 +64,7 @@ while(running == True):
     elif (action== "circle"):
         Circle.Draw()
     elif(action == "flood"):
-        print("starting flood")
+        print("Starting Flood...")
         x = 0
         y = 0
         z = 0
@@ -71,9 +73,9 @@ while(running == True):
                     mc.setBlock(x * 10, 50, z * 10, 10, 0)
                     mc.setBlock(x * 10, 49, z * 10, 4, 0)
     elif(action == "terraform"):
-        block = input("What block number?")
-        data = input("what data number?")
-        print("terraforming world...")
+        block = input("What block ID?")
+        data = input("What data value?")
+        print("Terraforming World...")
         for y in range(10, 0):
             for x in range(-25, 25):
                 for z in range(-25, 25):
@@ -93,7 +95,7 @@ while(running == True):
     elif(action == "quit"):
         running = False
     elif(action == "turn"):
-        cd = input("current direction: ")
-        nd = input("new direction")
+        cd = input("Current Direction: ")
+        nd = input("New Direction: ")
         CopyBuild.Turn(CopyBuild.currentPad, cd, nd)
         CopyBuild.build()
