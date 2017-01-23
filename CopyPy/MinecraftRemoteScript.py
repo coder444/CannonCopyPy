@@ -3,6 +3,8 @@ import warnings
 import Circle
 import CopyBuild
 
+import ReplaceBlock
+
 import sys
 
 warnings.filterwarnings("ignore")
@@ -99,3 +101,8 @@ while(running == True):
         nd = input("New Direction: ")
         CopyBuild.Turn(CopyBuild.currentPad, cd, nd)
         CopyBuild.build()
+    elif(action == "replace"):
+        ReplaceBlock.replaceLimited()
+    elif(action == "replacef"):
+        ReplaceBlock.replace()
+        

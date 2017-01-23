@@ -26,6 +26,9 @@ def askForMc():
     import MinecraftRemoteScript
     mc = MinecraftRemoteScript.getMc()
 
+def giveMc():
+    return mc
+
 """Default current pad"""
 
 def getPad():
