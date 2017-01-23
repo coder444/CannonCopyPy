@@ -52,7 +52,9 @@ while(running == True):
         "save",
         "load",
         "city",
-        "quit"
+        "quit",
+        "replace",
+        "replacef"
     ]
     if(action == "start"):
         getMc()
